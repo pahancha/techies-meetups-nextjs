@@ -3,8 +3,8 @@ import RootLayout from './layout'
 
 export default function Home() {
   return (
-    <RootLayout>
-      
-    </RootLayout>
+    <>
+      <p>This is the home page</p>
+    </>
   )
 }
