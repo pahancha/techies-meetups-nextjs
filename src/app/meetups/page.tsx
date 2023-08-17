@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
      
-     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
       <MeetupCard 
           imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           clubName='Colombo Flutter Meetup (Sample)'
