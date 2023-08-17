@@ -21,7 +21,7 @@ export default function RootLayout({
     <>
     <html lang="en" className={inter.className}>
       <Header />
-       <main className="mx-12 lg:mx-24">{children}</main>
+       <main>{children}</main>
        <Footer />
     </html>
     </>

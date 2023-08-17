@@ -16,9 +16,11 @@ const Header = () => {
           <Link href="/search">
             search
           </Link>
-          <button className="text-sm bg-blue-500 text-white px-3 py-1 rounded">
+          <Link href={"/users/login"}>
+          <button className="text-sm bg-blue-500 text-white px-3 py-1 rounded" >
             Login
           </button>
+          </Link>
         </div>
       </nav>
     </header>
