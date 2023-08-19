@@ -16,3 +16,19 @@ export const getClubs = async () => {
         throw e;
     }         
 }
+
+export const getEvents = async () => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/events`);
+        if (!response.ok) {
+            throw new Error('Spring response was not OK');
+        }
+        
+        const responseBody = await response.clone().json(); 
+        console.log(responseBody);
+        
+        return responseBody;
+    } catch (e) {
+        throw e;
+    }         
+}

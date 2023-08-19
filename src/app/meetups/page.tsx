@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import RootLayout from '../layout'
 import MeetupCard from '@/src/components/MeetupCard'
 
+import {getEvents} from '../../util/api';
 
 export default function MeetupsList() {
+  const events = getEvents();
   return (
     <>
      
