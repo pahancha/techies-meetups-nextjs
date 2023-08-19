@@ -1,6 +1,12 @@
+
+
 import ClubCard from '@/src/components/ClubCard'
 
+import {getClubs} from '../../util/api';
+
+
 export default function ClubList() {
+  const clubs =  getClubs();
   return (
     <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
