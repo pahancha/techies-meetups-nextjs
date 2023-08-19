@@ -3,7 +3,7 @@ import RootLayout from '../layout'
 import MeetupCard from '@/src/components/MeetupCard'
 
 
-export default function Home() {
+export default function MeetupsList() {
   return (
     <>
      

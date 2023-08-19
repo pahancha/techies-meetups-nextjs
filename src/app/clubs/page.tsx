@@ -1,10 +1,6 @@
-import Image from 'next/image'
-import RootLayout from '../layout'
-
-
 import ClubCard from '@/src/components/ClubCard'
 
-export default function Home() {
+export default function ClubList() {
   return (
     <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
