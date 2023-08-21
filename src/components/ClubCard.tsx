@@ -1,12 +1,14 @@
 import React from 'react';
 import Image from 'next/image';
 
+
 interface ClubCardProps {
   id: number;
   imageUrl: string;
   clubName: string;
   description: string;
 }
+
 
 const ClubCard: React.FC<ClubCardProps> = ({ imageUrl, clubName, description }) => {
   return (

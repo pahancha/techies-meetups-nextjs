@@ -1,6 +1,9 @@
 export type ClubType = {
     id: number
-    titile: string
+    title: string
     photoURL: string
     content: string 
+}
+export type ClubsType = {
+    results: ClubType[]
 }
