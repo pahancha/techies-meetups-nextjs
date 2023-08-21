@@ -13,16 +13,16 @@ export default function MeetupsList() {
           clubName='Colombo Flutter Meetup (Sample)'
           description='This a sample tech club which organizes tech meetups in flutter.'
         />
-            <MeetupCard 
+      <MeetupCard 
           imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           clubName='Colombo Flutter Meetup (Sample)'
           description='This a sample tech club which organizes tech meetups in flutter.'
-        />
-            <MeetupCard 
+      />
+      <MeetupCard 
           imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           clubName='Colombo Flutter Meetup (Sample)'
           description='This a sample tech club which organizes tech meetups in flutter.'
-        />
+      />
             <MeetupCard 
           imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
           clubName='Colombo Flutter Meetup (Sample)'

@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ClubCardProps {
+  id: number;
   imageUrl: string;
   clubName: string;
   description: string;
