@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { MeetupType } from "@/src/util/Types/MeetupType";
+import { MeetupType } from "@/src/util/types/MeetupType";
 import getMeetups from "@/src/util/meetups-api";
 import MeetupCard from "../MeetupCard";
 
@@ -28,8 +28,8 @@ export default function MeetupsSection() {
           <MeetupCard
             key={meetup.id} 
             id={meetup.id}
-            imageUrl={meetup.photoURL}
-            meetupTitle={meetup.name}
+            photoURL={meetup.photoURL}
+            name={meetup.name}
            />
         ))}
         </div> 

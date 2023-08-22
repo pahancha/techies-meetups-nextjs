@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react";
-import { ClubType } from "@/src/util/Types/ClubType";
+import { ClubType } from "@/src/util/types/ClubType";
 import getClubs from "@/src/util/club-api";
 import ClubCard from "../ClubCard";
 
@@ -27,9 +27,9 @@ export default function ClubsSection() {
           <ClubCard
             key={club.id}
             id={club.id}
-            imageUrl={club.photoURL}
-            clubName={club.title}
-            description={club.content}
+            photoURL={club.photoURL}
+            title={club.title}
+            content={club.content}
           />
         ))}
       </div>

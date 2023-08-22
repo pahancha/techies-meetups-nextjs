@@ -1,4 +1,4 @@
-import { MeetupType } from "./Types/MeetupType";
+import { MeetupType } from "./types/MeetupType";
 
 const API_BASE_URL = 'http://localhost:8080/api/events';
 

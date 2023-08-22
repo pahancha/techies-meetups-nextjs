@@ -1,4 +1,4 @@
-import { ClubsType,ClubType } from "./Types/ClubType";
+import { ClubsType,ClubType } from "./types/ClubType";
 
 const API_BASE_URL = 'http://localhost:8080/api/clubs';
 
