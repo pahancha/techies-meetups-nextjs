@@ -1,4 +1,4 @@
-export interface LoginType {
-    user: string;
-    jwt: string;
-  }
+export type LoginType = {
+    user: string
+    jwt: string
+}
