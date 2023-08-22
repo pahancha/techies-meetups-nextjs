@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
 import ClubCard from "@/src/components/ClubCard";
-import getClubs from "@/src/util/api";
-import { ClubType } from "@/src/util/ClubType";
+import getClubs from "@/src/util/club-api";
+import { ClubType } from "@/src/util/Types/ClubType";
 
 export default function ClubList() {
   const [clubs, setClubs] = useState<ClubType[]>([]);

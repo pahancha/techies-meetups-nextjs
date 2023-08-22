@@ -1,9 +1,9 @@
-import { ClubsType,ClubType } from "./ClubType";
+import { ClubsType,ClubType } from "./Types/ClubType";
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = 'http://localhost:8080/api/clubs';
 
 export default async function getClubs():Promise<ClubType[]> {
-    const res = await fetch(`${API_BASE_URL}/clubs`);
+    const res = await fetch(`${API_BASE_URL}`);
   
     if (!res.ok) {
       throw new Error(`An error has occurred: ${res.status}`);

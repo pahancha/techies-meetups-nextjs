@@ -1,40 +1,39 @@
+"use client"
+import { useEffect, useState } from 'react';
 import MeetupCard from '@/src/components/MeetupCard'
+import { MeetupType } from '@/src/util/Types/MeetupType';
+import getMeetups from '@/src/util/meetups-api';
 
-import {getEvents} from '../../util/api';
 
 export default function MeetupsList() {
-  const events = getEvents();
+
+  const [meetups, setMeetups] = useState<MeetupType[]>([]);
+
+  useEffect(() => {
+    const fetchClubs = async () => {
+      try {
+        const meetupssData = await getMeetups();
+        setMeetups(meetupssData);
+      } catch (error) {
+        console.error('Error fetching clubs:', error);
+      }
+    };
+
+    fetchClubs();
+  }, []);
+
   return (
     <>
-     
      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-      <MeetupCard 
-          imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          clubName='Colombo Flutter Meetup (Sample)'
-          description='This a sample tech club which organizes tech meetups in flutter.'
-        />
-      <MeetupCard 
-          imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          clubName='Colombo Flutter Meetup (Sample)'
-          description='This a sample tech club which organizes tech meetups in flutter.'
-      />
-      <MeetupCard 
-          imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          clubName='Colombo Flutter Meetup (Sample)'
-          description='This a sample tech club which organizes tech meetups in flutter.'
-      />
-            <MeetupCard 
-          imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          clubName='Colombo Flutter Meetup (Sample)'
-          description='This a sample tech club which organizes tech meetups in flutter.'
-        />
-            <MeetupCard 
-          imageUrl='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-          clubName='Colombo Flutter Meetup (Sample)'
-          description='This a sample tech club which organizes tech meetups in flutter.'
-        />
-
-        </div> 
+      {meetups.map((meetup) => (
+        <MeetupCard
+          key={meetup.id} 
+          id={meetup.id}
+          imageUrl={meetup.photoURL}
+          meetupTitle={meetup.name}
+         />
+      ))}
+      </div> 
     </>
   )
 }

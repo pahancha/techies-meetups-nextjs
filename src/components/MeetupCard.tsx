@@ -1,18 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
-import autoprefixer from 'autoprefixer';
 
 interface MeetupCardProps {
+  id: number
   imageUrl: string;
-  clubName: string;
+  meetupTitle: string;
   description: string;
 }
 
-const MeetupCard: React.FC<MeetupCardProps> = ({ imageUrl, clubName, description }) => {
+const MeetupCard: React.FC<MeetupCardProps> = ({ imageUrl, meetupTitle, description }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 mx-auto max-w-xs">
-      <Image width={500} height={250} src={imageUrl} alt={`Logo of ${clubName}`} className="mx-auto mb-4" />
-      <h3 className="text-xl font-semibold mb-2">{clubName}</h3>
+      <Image width={500} height={250} src={imageUrl} alt={`Logo of ${meetupTitle}`} className="mx-auto mb-4" />
+      <h3 className="text-xl font-semibold mb-2">{meetupTitle}</h3>
       <p className="text-gray-600">{description}</p>
     </div>
   );
