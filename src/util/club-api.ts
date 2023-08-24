@@ -43,20 +43,24 @@ export const getEvents = async () => {
     }         
 }
 
-// get single club details
+  // get single Meetup details - server side rendering
 
-export const getSingleClubDetails = async (clubId: number) => {
+  export const getSingleClubDetails = async (clubId: number) => {
     try {
-        const response = await fetch(`${API_BASE_URL}/${clubId}`)
+        const response = await fetch(`${API_BASE_URL}/${clubId}`, { 
+          next: {
+            revalidate: 60
+          }
+    })
         if (!response.ok) {
             throw new Error('Spring response for single club details was not OK.');
         }
-
+  
         const responseBody = await response.clone().json();
         console.log(responseBody);
-
+  
         return responseBody;
     }catch(e) {
         throw e;
     }
-}
+  }

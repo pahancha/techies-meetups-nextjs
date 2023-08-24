@@ -1,30 +1,41 @@
+
 import { SingleMeetupProps } from "@/src/util/types/SingleComponentProp";
 import Image from "next/image";
+import { MeetupType } from "@/src/util/types/MeetupType";
+import { getSingleMeetupDetails } from "@/src/util/meetups-api";
 
-export default function SingleMeetup({ id }: SingleMeetupProps) {
+export default async function SingleMeetup({ id }: SingleMeetupProps) {
+
+const meetup =  await getSingleMeetupDetails(id);
+
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-5xl font-semibold content-center">
-        testing the Meetup {id} in section
-      </h1>
+      {meetup && (
+        <h1 className="text-5xl font-semibold content-center">
+          testing the Meetup {id} in section
+        </h1>
+      )}
+        <h1 className="text-5xl font-semibold content-center">
+          testing the Meetup {meetup?.name} in section
+        </h1>
       <Image
         width={750}
         height={250}
-        src="https://images.pexels.com/photos/4974920/pexels-photo-4974920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        alt={`Logo of title will go here`}
+        src={meetup?.photoURL}
+        alt={`Logo of ${meetup?.name}`}
         className="mx-auto mb-4 py-10"
       />
       <h3 className="text-2xl text-emerald-600 mb-4">
         Type of the meetup will display here
       </h3>
       <div className="flex space-x-4 mb-8">
-        <p>Start time</p>
-        <p>End time</p>
+      <p className="text-gray-600">Start Time: {new Date(meetup?.startTime).toLocaleString()}</p>
+          <p className="text-gray-600">End Time: {new Date(meetup?.endTime).toLocaleString()}</p>
       </div>
       <div className="flex space-x-4 mb-8">
-        <p>Created time</p>
-        <p>Updated time</p>
+      <p className="text-gray-600">Created On: {new Date(meetup?.createdOn).toLocaleString()}</p>
+          <p className="text-gray-600">Updated On: {new Date(meetup?.updatedOn).toLocaleString()}</p>
       </div>
 
       <h1 className="text-3xl font-semibold">
