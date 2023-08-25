@@ -3,6 +3,7 @@ import { SingleMeetupProps } from "@/src/util/types/SingleComponentProp";
 import Image from "next/image";
 import { MeetupType } from "@/src/util/types/MeetupType";
 import { getSingleMeetupDetails } from "@/src/util/meetups-api";
+import Link from "next/link";
 
 export default async function SingleMeetup({ id }: SingleMeetupProps) {
 
@@ -40,6 +41,9 @@ const meetup =  await getSingleMeetupDetails(id);
 
       <h1 className="text-3xl font-semibold">
         Meetup information for {id} will display here.
+      </h1>
+      <h1 className="text-3xl font-semibold">
+       Organized by <span className="underline"><Link href={`/clubs/${meetup.clubId}`}>{meetup.clubName}</Link></span>
       </h1>
     </div>
   );
