@@ -44,7 +44,7 @@ const Header = () => {
               <span className="ml-1 text-gray-900">Search</span>
             </div>
           </Link>
-          <Link href="/users/login">
+          <Link href="/users/club/login">
             <button className="text-l bg-blue-500 text-white px-3 py-1 rounded focus:outline-none hover:bg-blue-600 transition duration-300">
               Login
             </button>

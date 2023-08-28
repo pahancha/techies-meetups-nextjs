@@ -12,10 +12,7 @@ export default async function SingleClub({ id }: SingleClubProps) {
       {club && (
         <>
           <h1 className="text-5xl font-semibold content-center">
-            testing the Meetup {id} in section
-          </h1>
-          <h1 className="text-5xl font-semibold content-center">
-            testing the Meetup {club?.name} in section
+            testing the Meetup <span className="underline">{club?.title}</span> in section
           </h1>
           <Image
             width={750}
