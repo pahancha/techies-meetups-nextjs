@@ -46,3 +46,6 @@ export async function login(username: string, password: string):Promise<LoginTyp
     const registerData = await res.json;
     return registerData;
   }
+
+ 
+

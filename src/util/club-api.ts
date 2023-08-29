@@ -64,3 +64,6 @@ export const getEvents = async () => {
         throw e;
     }
   }
+
+
+  //Authentication Required 
