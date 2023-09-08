@@ -1,9 +1,19 @@
+"use client"
+
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import logo from "./../assets/logo.svg";
+import { useSession } from 'next-auth/react';
+import { SignInButton } from './SignInButton';
+
 
 const Header = () => {
+
+  const{data: session} = useSession();
+  console.log({session});
+
+
   return (
     <header className="bg-gradient-to-r from-white to-gray-200 text-gray-900 p-2 font-semibold">
       <nav className="flex justify-between items-center p-4 m-2">
@@ -44,11 +54,8 @@ const Header = () => {
               <span className="ml-1 text-gray-900">Search</span>
             </div>
           </Link>
-          <Link href="/users/club/login">
-            <button className="text-l bg-blue-500 text-white px-3 py-1 rounded focus:outline-none hover:bg-blue-600 transition duration-300">
-              Login
-            </button>
-          </Link>
+          
+          <SignInButton />
         </div>
       </nav>
     </header>

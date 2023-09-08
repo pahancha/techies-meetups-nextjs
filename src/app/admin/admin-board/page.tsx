@@ -4,6 +4,8 @@ import { ClubType } from "@/src/util/types/ClubType";
 import { MeetupType } from "@/src/util/types/MeetupType";
 import getAdminInfo from "@/src/util/admin-api";
 import Link from "next/link";
+
+
 const AdminPage: React.FC = () => {
   const [info, setInfo] = useState<{
     numberOfClubs: number;
@@ -14,12 +16,12 @@ const AdminPage: React.FC = () => {
 
   useEffect(() => {
     const fetchAdminInfo = async () => {
-      try {
-        const adminInfo = await getAdminInfo();
-        setInfo(adminInfo);
-      } catch (error) {
-        console.error("Error fetching admin information:", error);
-      }
+      // try {
+      //   const adminInfo = await getAdminInfo();
+      //   setInfo(adminInfo);
+      // } catch (error) {
+      //   console.error("Error fetching admin information:", error);
+      // }
     };
 
     fetchAdminInfo();
