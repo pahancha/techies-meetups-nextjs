@@ -1,7 +1,7 @@
 const API_BASE_URL = 'http://localhost:8080/api/admin'
 
 
-  export default async function getAdminInfo(jwtToken: string) {
+  export default async function getAdminInfo(jwtToken: any) {
     const res = await fetch(`${API_BASE_URL}/info`, {
       headers: {
         Authorization: `Bearer ${jwtToken}`

@@ -5,8 +5,14 @@ import { MeetupType } from "@/src/util/types/MeetupType";
 import getAdminInfo from "@/src/util/admin-api";
 import Link from "next/link";
 
+import { useSession } from "next-auth/react";
+import { data } from "autoprefixer";
+
 
 const AdminPage: React.FC = () => {
+
+  const { data:session } = useSession();
+
   const [info, setInfo] = useState<{
     numberOfClubs: number;
     numberOfMeetups: number;
@@ -14,18 +20,42 @@ const AdminPage: React.FC = () => {
     meetups: MeetupType[];
   } | null>(null);
 
+
   useEffect(() => {
     const fetchAdminInfo = async () => {
-      // try {
-      //   const adminInfo = await getAdminInfo();
-      //   setInfo(adminInfo);
-      // } catch (error) {
-      //   console.error("Error fetching admin information:", error);
-      // }
-    };
+      try {
+        const res = await fetch("http://localhost:8080/api/admin/info", {
+          method: "Get",
+          headers: {
+            authorization: `bearer ${session?.jwt}`,
+          },
+        });
+  
+        if (!res.ok) {
+          throw new Error("Failed to fetch admin info");
+        }
+  
+        const response = await res.json();
+        console.log("ADMIN call " + response);
+        console.log("TOKEN " + session?.jwt);
+        setInfo(response);
+      } catch (error) {
+        console.error("Error fetching admin information:", error);
+        // Handle the error (e.g., display an error message)
+        console.log("TOKEN " + session?.jwt);
+        console.log("USER NAME " + session?.user);
+        console.log("USER ROLE " + session?.role);
+      }
 
+
+    };
+  
     fetchAdminInfo();
-  }, []);
+  }, [session?.jwt]);
+  
+
+
+
 
   const handleRemoveClub = (clubId: number) => {};
 
