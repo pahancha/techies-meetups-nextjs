@@ -50,6 +50,7 @@ export const authOptions: NextAuthOptions = {
         async session({token, session}) {
             session.user = token.user;
             session.jwt = token.jwt;
+            session.role = token.role;
             
             return session;
         }
