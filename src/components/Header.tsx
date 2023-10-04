@@ -76,8 +76,11 @@ const Header = () => {
           <Link href="/meetups" className="hover:text-red-900">
             Meetups
           </Link>
-          <Link href="/admin/admin-board" className="hover:text-red-900 bg-slate-500 text-white rounded p-2">
+          <Link href="/users/club/add-new-meetup" className=" bg-green-600 text-white rounded p-2">
             Add new meetup
+          </Link>
+          <Link href="/meetups/edit-meetup" className=" bg-blue-500 text-white rounded p-2">
+            Edit a meetup
           </Link>
         </div>
         <Link href="/" className="flex items-center">

@@ -22,7 +22,7 @@ export default function ClubsSection() {
     }, []);
   
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 m-9">
         {clubs.map((club) => (
           <ClubCard
             key={club.id}

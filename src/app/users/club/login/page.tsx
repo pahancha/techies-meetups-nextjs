@@ -20,7 +20,7 @@ await signIn("credentials", {
   userName:userName,
   password:pass,
   redirect: true,
-  callbackUrl:"/admin/admin-board"
+  callbackUrl:"/"
  })
 }
 
