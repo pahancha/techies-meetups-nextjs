@@ -9,40 +9,77 @@ const UserDashboard: React.FC = () => {
 
   const [userInfo, setUserInfo] = useState<any>(null);
 
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const res = await fetch(`http://localhost:8080/api/user/info/${session?.id}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${session?.jwt}`,
-          },
-        });
+  const fetchUserInfo = async () => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/user/info/${session?.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${session?.jwt}`,
+        },
+      });
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch user info");
-        }
-
-        const response = await res.json();
-        setUserInfo(response);
-      } catch (error) {
-        console.error("Error fetching user information:", error);
+      if (!res.ok) {
+        throw new Error("Failed to fetch user info");
       }
-    };
+
+      const response = await res.json();
+      setUserInfo(response);
+    } catch (error) {
+      console.error("Error fetching user information:", error);
+    }
+  };
+  useEffect(() => {
+  
 
     fetchUserInfo();
   }, [session?.jwt]);
 
-  const handleRemoveClub = (clubId: number) => {
-    // Implement club removal logic here
+  const handleRemoveClub = async (clubId: number) => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/clubs/${clubId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.jwt}`,
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to remove club");
+      }
+  
+      //fetching adming information again after removing a club.
+      await fetchUserInfo();
+    } catch (error) {
+      console.error("Error removing club:", error);
+      
+    }
+
   };
 
   const handleUpdateClub = (clubId: number) => {
     // Implement club update logic here
   };
 
-  const handleRemoveMeetup = (meetupId: number) => {
-    // Implement meetup removal logic here
+  const handleRemoveMeetup = async (meetupId: number) => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/events/${meetupId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.jwt}`,
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to remove meetup");
+      }
+  
+      //fetching adming information again after removing a meetup.
+      await fetchUserInfo();
+    } catch (error) {
+      console.error("Error removing meetup:", error);
+      
+    }
+
   };
 
   const handleUpdateMeetup = (meetupId: number) => {
@@ -81,7 +118,7 @@ const UserDashboard: React.FC = () => {
               <div className="flex space-x-2">
                 <button
                   onClick={() => handleRemoveClub(club.id)}
-                  className="text-red-500 hover:text-red-700"
+                  className="text-red-500 hover-text-red-700"
                 >
                   Remove
                 </button>
@@ -99,29 +136,32 @@ const UserDashboard: React.FC = () => {
       <div>
         <h2 className="text-xl font-semibold mb-2">Meetups</h2>
         <ul>
-          {userInfo.clubs.map((club: any) => (
-            <li key={club.id} className="py-2 border-b flex items-center justify-between">
-              <span>{club.title}</span>
-              <div className="flex space-x-2">
-                <button
-                  onClick={() => handleRemoveClub(club.id)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  Remove
-                </button>
-                <button
-                  onClick={() => handleUpdateClub(club.id)}
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  Update
-                </button>
-              </div>
-            </li>
-          ))}
+          {userInfo.clubs.flatMap((club: any) =>
+            club.events.map((meetup: any) => (
+              <li key={meetup.id} className="py-2 border-b flex items-center justify-between">
+                <span>{meetup.name}</span>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => handleRemoveMeetup(meetup.id)}
+                    className="text-red-500 hover:text-red-700"
+                  >
+                    Remove
+                  </button>
+                  <button
+                    onClick={() => handleUpdateMeetup(meetup.id)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Update
+                  </button>
+                </div>
+              </li>
+            ))
+          )}
         </ul>
       </div>
     </div>
   );
+  
 };
 
 export default UserDashboard;
