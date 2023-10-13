@@ -74,7 +74,27 @@ const AdminPage: React.FC = () => {
 
   };
 
-  const handleRemoveMeetup = (meetupId: number) => {};
+  const handleRemoveMeetup = async (meetupId: number) => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/events/${meetupId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.jwt}`,
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to remove meetup");
+      }
+  
+      //fetching adming information again after removing a meetup.
+      await fetchAdminInfo();
+    } catch (error) {
+      console.error("Error removing meetup:", error);
+      
+    }
+
+  };
 
   if (!info) {
     // Loading state
