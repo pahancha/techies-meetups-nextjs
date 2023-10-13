@@ -2,11 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { ClubType } from "@/src/util/types/ClubType";
 import { MeetupType } from "@/src/util/types/MeetupType";
-import getAdminInfo from "@/src/util/admin-api";
 import Link from "next/link";
 
 import { useSession } from "next-auth/react";
-import { data } from "autoprefixer";
 
 
 const AdminPage: React.FC = () => {
@@ -20,44 +18,61 @@ const AdminPage: React.FC = () => {
     meetups: MeetupType[];
   } | null>(null);
 
+  const fetchAdminInfo = async () => {
+    try {
+      const res = await fetch("http://localhost:8080/api/admin/info", {
+        method: "Get",
+        headers: {
+          authorization: `bearer ${session?.jwt}`,
+        },
+      });
 
-  useEffect(() => {
-    const fetchAdminInfo = async () => {
-      try {
-        const res = await fetch("http://localhost:8080/api/admin/info", {
-          method: "Get",
-          headers: {
-            authorization: `bearer ${session?.jwt}`,
-          },
-        });
-  
-        if (!res.ok) {
-          throw new Error("Failed to fetch admin info");
-        }
-  
-        const response = await res.json();
-        console.log("ADMIN call " + response);
-        console.log("TOKEN " + session?.jwt);
-        setInfo(response);
-      } catch (error) {
-        console.error("Error fetching admin information:", error);
-        // Handle the error (e.g., display an error message)
-        console.log("TOKEN " + session?.jwt);
-        console.log("USER NAME " + session?.user);
-        console.log("USER ROLE " + session?.role);
+      if (!res.ok) {
+        throw new Error("Failed to fetch admin info");
       }
 
+      const response = await res.json();
+      console.log("ADMIN call " + response);
+      console.log("TOKEN " + session?.jwt);
+      setInfo(response);
+    } catch (error) {
+      console.error("Error fetching admin information:", error);
+      // Handle the error (e.g., display an error message)
+      console.log("TOKEN " + session?.jwt);
+      console.log("USER NAME " + session?.user);
+      console.log("USER ROLE " + session?.role);
+    }
 
-    };
-  
+
+  };
+
+  useEffect(() => {
     fetchAdminInfo();
   }, [session?.jwt]);
   
 
 
+  const handleRemoveClub = async (clubId: number) => {
+    try {
+      const res = await fetch(`http://localhost:8080/api/clubs/${clubId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${session?.jwt}`,
+        },
+      });
+  
+      if (!res.ok) {
+        throw new Error("Failed to remove club");
+      }
+  
+      //fetching adming information again after removing a club.
+      await fetchAdminInfo();
+    } catch (error) {
+      console.error("Error removing club:", error);
+      
+    }
 
-
-  const handleRemoveClub = (clubId: number) => {};
+  };
 
   const handleRemoveMeetup = (meetupId: number) => {};
 
