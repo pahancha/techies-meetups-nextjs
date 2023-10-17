@@ -99,12 +99,12 @@ const UserDashboard: React.FC = () => {
           Username: <span className="font-bold">{userInfo.username}</span>
         </p>
         <div className="mt-4 flex space-x-4">
-          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          <Link href="/user/create-club" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Create New Club
-          </button>
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          </Link>
+          <Link href="/user/create-meetup" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Create New Meetup
-          </button>
+          </Link>
         </div>
       </div>
       <div>
