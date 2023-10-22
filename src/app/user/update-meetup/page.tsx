@@ -59,10 +59,10 @@ const meetupId = params?.get("id");
       if (response.ok) {
         router.push('/user/user-board');
       } else {
-        // Handle the error as needed
+        // Handle the 
       }
     } catch (error) {
-      // Handle the error as needed
+      // Handle the error 
     }
   };
 
