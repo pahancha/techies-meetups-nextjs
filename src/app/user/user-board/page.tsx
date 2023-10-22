@@ -143,7 +143,10 @@ const UserDashboard: React.FC = () => {
                 <Link
                   href={{
                     pathname:"/user/update-club",
-                    query: {id:`${club.id}`}
+                    query: {
+                      id:`${club.id}`,
+                      name:`${club.title}`
+                    }
                   }}
                   onClick={() => handleUpdateClub(club.id)}
                   className="text-blue-500 hover:text-blue-700"
@@ -169,12 +172,20 @@ const UserDashboard: React.FC = () => {
                   >
                     Remove
                   </button>
-                  <button
-                    onClick={() => handleUpdateMeetup(meetup.id)}
+
+                  <Link
+                     href={{
+                      pathname:"/user/update-meetup",
+                      query: {
+                        id:`${meetup.id}`,
+                        name:`${meetup.name}`
+                      }
+                    }}
                     className="text-blue-500 hover:text-blue-700"
                   >
                     Update
-                  </button>
+                  </Link>
+
                 </div>
               </li>
             ))
