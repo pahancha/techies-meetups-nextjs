@@ -140,12 +140,16 @@ const UserDashboard: React.FC = () => {
                 >
                   Remove
                 </button>
-                <button
+                <Link
+                  href={{
+                    pathname:"/user/update-club",
+                    query: {id:`${club.id}`}
+                  }}
                   onClick={() => handleUpdateClub(club.id)}
                   className="text-blue-500 hover:text-blue-700"
                 >
                   Update
-                </button>
+                </Link>
               </div>
             </li>
           ))}
