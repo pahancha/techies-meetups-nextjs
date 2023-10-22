@@ -38,7 +38,7 @@ const CreateMeetupPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/api/meetups/new', {
+      const response = await fetch(`http://localhost:8080/api/${clubID}/events`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

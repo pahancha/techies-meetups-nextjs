@@ -114,13 +114,13 @@ const UserDashboard: React.FC = () => {
           <Link href="/user/create-club" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Create New Club
           </Link>
-          <Link 
-          href="/user/create-meetup" 
+
+          <button 
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={openSelectClubPopup}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          >
             Create New Meetup
-          </Link>
-          <button onClick={openSelectClubPopup}>Test the popup bn</button>
+          </button>
         </div>
       </div>
       <SelectClub show={showSelectClub} handleClose={() => setShowSelectClub(false)} clubs={clubsData} />
