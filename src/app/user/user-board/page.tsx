@@ -3,12 +3,24 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import SelectClub from "@/src/components/SelectClub";
 
 const UserDashboard: React.FC = () => {
   const { data: session } = useSession();
 
   const [userInfo, setUserInfo] = useState<any>(null);
 
+  //selct club popup
+  const [showSelectClub, setShowSelectClub] = useState(false);
+
+  const openSelectClubPopup = () => {
+    setShowSelectClub(true);
+    console.log("clubs data are "+userInfo?.clubs);
+  };
+
+  //clubs infor array
+  const clubsData = userInfo?.clubs || [];
+  
   const fetchUserInfo = async () => {
     try {
       const res = await fetch(`http://localhost:8080/api/user/info/${session?.id}`, {
@@ -102,11 +114,17 @@ const UserDashboard: React.FC = () => {
           <Link href="/user/create-club" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Create New Club
           </Link>
-          <Link href="/user/create-meetup" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          <Link 
+          href="/user/create-meetup" 
+          onClick={openSelectClubPopup}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Create New Meetup
           </Link>
+          <button onClick={openSelectClubPopup}>Test the popup bn</button>
         </div>
       </div>
+      <SelectClub show={showSelectClub} handleClose={() => setShowSelectClub(false)} clubs={clubsData} />
+
       <div>
         <h2 className="text-xl font-semibold mb-2">Clubs</h2>
         <ul>
