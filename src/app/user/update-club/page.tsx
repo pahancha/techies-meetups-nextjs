@@ -51,6 +51,7 @@ const UpdateClubPage = () => {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.jwt}`,
         },
         body: JSON.stringify(clubData),
       });

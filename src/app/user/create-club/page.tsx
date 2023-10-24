@@ -34,6 +34,7 @@ const CreateClubPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.jwt}`,
         },
         body: JSON.stringify(clubData),
       });

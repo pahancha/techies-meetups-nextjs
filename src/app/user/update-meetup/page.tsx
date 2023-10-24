@@ -1,25 +1,24 @@
-"use client"
-import { ChangeEvent, FormEvent, useState, useEffect } from 'react';
-import { MeetupType } from '@/src/util/types/MeetupType';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+"use client";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
+import { MeetupType } from "@/src/util/types/MeetupType";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const UpdateMeetupPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const params = useSearchParams();
-const meetupId = params?.get("id");
-
+  const meetupId = params?.get("id");
 
   const [meetupData, setMeetupData] = useState<MeetupType>({
-    id: '', 
-    name: '',
-    startTime: '',
-    endTime: '',
-    type: '',
-    photoURL: '',
-    createdOn: '',
-    updatedOn: '',
+    id: "",
+    name: "",
+    startTime: "",
+    endTime: "",
+    type: "",
+    photoURL: "",
+    createdOn: "",
+    updatedOn: "",
   });
 
   useEffect(() => {
@@ -28,15 +27,17 @@ const meetupId = params?.get("id");
       fetch(`http://localhost:8080/api/events/${meetupId}`)
         .then((response) => response.json())
         .then((data) => {
-          setMeetupData(data); 
+          setMeetupData(data);
         })
         .catch((error) => {
-          console.error('Error fetching meetup data:', error);
+          console.error("Error fetching meetup data:", error);
         });
     }
   }, [meetupId]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setMeetupData({
       ...meetupData,
@@ -48,21 +49,25 @@ const meetupId = params?.get("id");
     e.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:8080/api/events/${meetupData.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(meetupData),
-      });
+      const response = await fetch(
+        `http://localhost:8080/api/events/${meetupData.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.jwt}`,
+          },
+          body: JSON.stringify(meetupData),
+        }
+      );
 
       if (response.ok) {
-        router.push('/user/user-board');
+        router.push("/user/user-board");
       } else {
-        // Handle the 
+        // Handle the
       }
     } catch (error) {
-      // Handle the error 
+      // Handle the error
     }
   };
 
@@ -143,14 +148,13 @@ const meetupId = params?.get("id");
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Update Meetup
-            </button>
-          </div>
-        </form>
-      </div>
-    );
-  };
-  
-  export default UpdateMeetupPage;
-  
+          >
+            Update Meetup
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default UpdateMeetupPage;
