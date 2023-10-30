@@ -38,8 +38,8 @@ Tcechie's Meetups is a Next.js application designed to display information about
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-username/tcechies-meetups.git
-cd tcechies-meetups
+git clone https://github.com/pahancha/techies-meetups-nextjs.git
+cd techies-meetups-nextjs
 ```
 
 ### Install Dependencies
