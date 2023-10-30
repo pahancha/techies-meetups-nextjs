@@ -1,3 +1,5 @@
+![logo](https://raw.githubusercontent.com/pahancha/techies-meetups-nextjs/0e0e13a05b3e43d50d5801ce2189739bfb058e3e/src/assets/logo.svg)
+
 # Techie's Meetups
 
 Tcechie's Meetups is a Next.js application designed to display information about meetups within the tech community. Users can register in the Tcechie's Meetups application and create clubs. New meetups can be scheduled under these registered clubs. The application comprises two user types:
