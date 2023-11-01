@@ -28,9 +28,7 @@ await signIn("credentials", {
   return (
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-[#27374D] to-[#526D82]">
       <div className="bg-[#9DB2BF] shadow-md rounded-lg p-8 w-full max-w-sm">
-        <h2 className="text-3xl font-extrabold mb-4 text-center text-gray-800">Clubs Log In</h2>
-        <h3 className="text-xl font-extrabold mb-2 text-center text-gray-700">Are you an admin? Visit <span><Link href={'/users/admin/login'}><u>admin login</u></Link></span></h3>
-        
+        <h2 className="text-3xl font-extrabold mb-4 text-center text-gray-800">Log In</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-600 font-semibold">User Name</label>

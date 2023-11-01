@@ -44,7 +44,6 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async jwt( { token, user } ) {
          return {...token, ...user};
-            return token;
         },
 
         async session({token, session}) {
@@ -56,7 +55,7 @@ export const authOptions: NextAuthOptions = {
         }
     },
     pages: {
-        signIn:"/users/club/login"
+        signIn:"/users/login"
     }
 }
 

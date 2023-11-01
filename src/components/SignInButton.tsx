@@ -30,7 +30,7 @@ export const SignInButton = () => {
       </Link>
 
       <Link
-        href={"/signup"}
+        href={"/users/signup"}
         className="flex gap-4 ml-auto bg-black text-white p-2 rounded"
       >
         Sign Up
